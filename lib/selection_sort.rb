@@ -1,25 +1,32 @@
-# Public: Sorts an Array with the Bubble sort algorithm
+# Public: Sorts an Array with the Selection sort algorithm
 # 
 # arr - The Array that will be sorted
 #
 # Examples
 #
-#   bubble_sort([7,3,1,3])
+#   selection_sort([7,3,1,3])
 #   # => [1,3,3,7]
 #
 # Returns the sorted Array
-def bubble_sort(arr)
+def selection_sort(arr)
     arr = arr.dup
-    
+    smallest_pos = 0
+
     unless sorted?(arr)
-        i = 0
-        while i < arr.length - 1
-            if arr[i] > arr[i + 1]
-                arr[i], arr[i + 1] = arr[i + 1], arr[i]
+        i = smallest_pos
+        that_pos = 0
+        smallest = arr[i]
+        
+        while i < arr.length
+            if arr[i] < smallest
+                that_pos = i
+                smallest = arr[i]
             end
             i+=1
         end
-        p arr
+        
+        arr[smallest_pos], arr[that_pos] = arr[that_pos], arr[smallest_pos]
+        smallest_pos += 1
     end
 
     return arr
@@ -49,3 +56,5 @@ def sorted?(arr)
 
     return true
 end
+
+p selection_sort([3,1,3,7])
